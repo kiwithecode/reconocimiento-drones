@@ -1,0 +1,71 @@
+# Entornos virtuales
+reid-env/
+venv/
+.env/
+*.env
+
+# Archivos temporales y cachés
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.log
+*.tmp
+*.bak
+.DS_Store
+Thumbs.db
+
+# Archivos de entrenamiento y modelos descargados
+*.pth
+*.pt
+*.ckpt
+*.weights
+*.onnx
+*.tflite
+*.npy
+*.npz
+
+# Checkpoints y modelos en caché
+~/.cache/
+.cache/
+checkpoints/
+runs/
+
+# Archivos de base de datos
+*.pkl
+*.db
+*.sqlite
+
+# Imágenes de entrenamiento y resultados
+*.jpg
+*.jpeg
+*.png
+*.bmp
+*.gif
+*.webp
+*.tiff
+*.ico
+
+# Carpeta con imágenes personales para entrenamiento
+personas_base/
+
+# Archivos de salida de video o frames procesados
+*.mp4
+*.avi
+*.mov
+*.mkv
+*.flv
+
+# Configuraciones de entorno local
+.vscode/
+.idea/
+*.code-workspace
+
+
+
+# Archivos comprimidos
+*.zip
+*.tar.gz
+*.tar
+*.7z
+*.rar

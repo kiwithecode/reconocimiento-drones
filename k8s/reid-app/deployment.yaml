@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: reid-app
+  namespace: tesis-reid
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: reid-app
+  template:
+    metadata:
+      labels:
+        app: reid-app
+    spec:
+      containers:
+        - name: reid
+          image: tuusuario/reid-app:latest
+          ports:
+            - containerPort: 8000  # si decides servir resultados
