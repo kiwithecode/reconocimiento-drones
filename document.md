@@ -41,7 +41,7 @@ cd deep-person-reid
 python -m venv reid-env
 reid-env\Scripts\activate
 pip install -r requirements.txt
-pip install cython
+pip install python
 python setup.py install
 ```
 

@@ -1,0 +1,11 @@
+__pycache__/
+*.pyc
+*.pkl
+*.jpg
+*.png
+.git
+.venv
+*.log
+.DS_Store
+.vscode/
+.idea/

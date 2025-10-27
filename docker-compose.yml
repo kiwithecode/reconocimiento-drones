@@ -1,0 +1,35 @@
+version: '3.8'
+
+services:
+  # Servicio RTMP (opcional)
+  rtmp:
+    build: ./rtmp-server
+    ports:
+      - "1935:1935"  # RTMP
+      - "8080:80"    # Interfaz web
+    restart: unless-stopped
+    networks:
+      - app-network
+
+  # Aplicación principal
+  app:
+    build: ./app
+    runtime: nvidia  # Requiere NVIDIA Container Toolkit
+    depends_on:
+      - rtmp
+    volumes:
+      - ./data:/app/data  # Para persistir datos
+      - /tmp/.X11-unix:/tmp/.X11-unix  # Para visualización
+    environment:
+      - DISPLAY=${DISPLAY}
+      - NVIDIA_VISIBLE_DEVICES=all
+      - RTMP_URL=rtmp://rtmp/live/stream
+    devices:
+      - /dev/video0:/dev/video0  # Solo si necesitas cámara
+    restart: unless-stopped
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
