@@ -2,10 +2,12 @@ import cv2
 import os
 import time
 from ultralytics import YOLO
-from config import PERSONAS_BASE, CARPETA_BASE
+from config import PERSONAS_BASE
 
-# Configuración
-NOMBRE_PERSONA = "kevin_armas_1726414087"
+# Configuración - Pedir nombre y cédula al usuario
+nombre = input("Ingresa tu nombre completo: ").strip().replace(" ", "_")
+cedula = input("Ingresa tu cédula: ").strip()
+NOMBRE_PERSONA = f"{nombre}_{cedula}"
 ruta_guardado = os.path.join(PERSONAS_BASE, NOMBRE_PERSONA)
 os.makedirs(ruta_guardado, exist_ok=True)
 
@@ -65,7 +67,7 @@ while True:
         # Auto guardado cada 2 segundos
         if auto_guardado and (time.time() - ultimo_guardado > 2):
             contador += 1
-            nombre_archivo = f"{nombre_persona}_{contador}.jpg"
+            nombre_archivo = f"{NOMBRE_PERSONA}_{contador}.jpg"
             ruta_img = os.path.join(ruta_guardado, nombre_archivo)
             crop_resized = cv2.resize(crop_actual, (128, 256))
             cv2.imwrite(ruta_img, crop_resized)

@@ -38,30 +38,36 @@ for persona in os.listdir(PERSONAS_BASE):
     embeddings = []
 
     for img_name in os.listdir(persona_dir):
+        if not img_name.lower().endswith(('.jpg', '.jpeg', '.png')):
+            continue
+        
         img_path = os.path.join(persona_dir, img_name)
-        image = Image.open(img_path).convert("RGB")
-        image = transform(image).unsqueeze(0).cuda()
+        try:
+            image = Image.open(img_path).convert("RGB")
+            image = transform(image).unsqueeze(0).cuda()
 
-        with torch.no_grad():
-            feature = model(image)
-            embeddings.append(feature.cpu().numpy())
+            with torch.no_grad():
+                feature = model(image)
+                embeddings.append(feature.cpu().numpy())
+        except Exception as e:
+            print(f"⚠️ Error procesando {img_name}: {e}")
+            continue
 
     # Promediar embeddings si hay varias imágenes
-    mean_embedding = np.mean(np.vstack(embeddings), axis=0)
+    if embeddings:
+        mean_embedding = np.mean(np.vstack(embeddings), axis=0)
 
-    database.append({
-        "nombre": nombre.replace("_", " ").title(),
-        "cedula": cedula,
-        "embedding": mean_embedding
-    })
-
-def cargar_o_crear_base():
-    if os.path.exists(BASE_EMBEDDINGS):
-        with open(BASE_EMBEDDINGS, 'rb') as f:
-            return pickle.load(f)
+        database.append({
+            "nombre": nombre.replace("_", " ").title(),
+            "cedula": cedula,
+            "embedding": mean_embedding
+        })
+        print(f"✅ {nombre.replace('_', ' ').title()} ({cedula}) procesado con {len(embeddings)} imágenes.")
     else:
-        with open(BASE_EMBEDDINGS, "wb") as f:
-            pickle.dump(database, f)
-        return database
+        print(f"⚠️ No se encontraron imágenes válidas para {persona}")
 
-print("✅ Embeddings generados y guardados en base_personas.pkl")
+# Guardar la base de datos
+with open(BASE_EMBEDDINGS, "wb") as f:
+    pickle.dump(database, f)
+
+print(f"\n✅ Base de {len(database)} persona(s) guardada en {BASE_EMBEDDINGS}")
