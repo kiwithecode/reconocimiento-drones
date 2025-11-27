@@ -1,0 +1,116 @@
+{
+  "summary": {
+    "session": {
+      "start_time": "2025-11-28T07:17:09.157951",
+      "duration_seconds": 12.597926,
+      "frames_processed": 231
+    },
+    "current": {
+      "total_people": 0,
+      "identified": 0,
+      "unknown": 0,
+      "zones": {}
+    },
+    "unique": {
+      "total_unique_tracks": 2,
+      "unique_identified_people": 1,
+      "identified_names": [
+        "Kevin Armas"
+      ],
+      "unique_unknown": 1
+    },
+    "peak": {
+      "max_people_at_once": 1,
+      "peak_time": "2025-11-28T07:17:12.364141"
+    }
+  },
+  "history": [
+    {
+      "timestamp": "2025-11-28T07:17:13.465636",
+      "total": 0,
+      "identified": 0,
+      "unknown": 0,
+      "zones": {}
+    },
+    {
+      "timestamp": "2025-11-28T07:17:14.751032",
+      "total": 0,
+      "identified": 0,
+      "unknown": 0,
+      "zones": {}
+    },
+    {
+      "timestamp": "2025-11-28T07:17:16.093857",
+      "total": 0,
+      "identified": 0,
+      "unknown": 0,
+      "zones": {}
+    },
+    {
+      "timestamp": "2025-11-28T07:17:17.377826",
+      "total": 0,
+      "identified": 0,
+      "unknown": 0,
+      "zones": {}
+    },
+    {
+      "timestamp": "2025-11-28T07:17:18.528318",
+      "total": 0,
+      "identified": 0,
+      "unknown": 0,
+      "zones": {}
+    },
+    {
+      "timestamp": "2025-11-28T07:17:19.706042",
+      "total": 0,
+      "identified": 0,
+      "unknown": 0,
+      "zones": {}
+    },
+    {
+      "timestamp": "2025-11-28T07:17:20.933513",
+      "total": 0,
+      "identified": 0,
+      "unknown": 0,
+      "zones": {}
+    }
+  ],
+  "people_log": [
+    {
+      "timestamp": "2025-11-28T07:17:12.590059",
+      "track_id": 1,
+      "identity": "Kevin Armas",
+      "confidence": 0.5866471247377922
+    },
+    {
+      "timestamp": "2025-11-28T07:17:12.854377",
+      "track_id": 1,
+      "identity": "Kevin Armas",
+      "confidence": 0.5765840991863178
+    },
+    {
+      "timestamp": "2025-11-28T07:17:13.948822",
+      "track_id": 1,
+      "identity": "Kevin Armas",
+      "confidence": 0.6129314788834854
+    },
+    {
+      "timestamp": "2025-11-28T07:17:16.323219",
+      "track_id": 2,
+      "identity": "Kevin Armas",
+      "confidence": 0.5971256662231859
+    },
+    {
+      "timestamp": "2025-11-28T07:17:16.694889",
+      "track_id": 2,
+      "identity": "Kevin Armas",
+      "confidence": 0.5843290677186901
+    },
+    {
+      "timestamp": "2025-11-28T07:17:17.567705",
+      "track_id": 2,
+      "identity": "Kevin Armas",
+      "confidence": 0.5994471295371882
+    }
+  ]
+}

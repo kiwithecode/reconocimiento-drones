@@ -1,0 +1,1285 @@
+{
+  "summary": {
+    "session": {
+      "start_time": "2025-11-28T07:09:09.713171",
+      "duration_seconds": 60.02243,
+      "frames_processed": 1624
+    },
+    "current": {
+      "total_people": 0,
+      "identified": 0,
+      "unknown": 0,
+      "zones": {}
+    },
+    "unique": {
+      "total_unique_tracks": 2,
+      "unique_identified_people": 1,
+      "identified_names": [
+        "Kevin Armas"
+      ],
+      "unique_unknown": 1
+    },
+    "peak": {
+      "max_people_at_once": 2,
+      "peak_time": "2025-11-28T07:09:25.153373"
+    }
+  },
+  "history": [
+    {
+      "timestamp": "2025-11-28T07:09:13.603616",
+      "total": 1,
+      "identified": 1,
+      "unknown": 0,
+      "zones": {}
+    },
+    {
+      "timestamp": "2025-11-28T07:09:14.790710",
+      "total": 1,
+      "identified": 1,
+      "unknown": 0,
+      "zones": {}
+    },
+    {
+      "timestamp": "2025-11-28T07:09:16.039350",
+      "total": 1,
+      "identified": 1,
+      "unknown": 0,
+      "zones": {}
+    },
+    {
+      "timestamp": "2025-11-28T07:09:17.272180",
+      "total": 1,
+      "identified": 1,
+      "unknown": 0,
+      "zones": {}
+    },
+    {
+      "timestamp": "2025-11-28T07:09:18.503132",
+      "total": 1,
+      "identified": 1,
+      "unknown": 0,
+      "zones": {}
+    },
+    {
+      "timestamp": "2025-11-28T07:09:19.730804",
+      "total": 1,
+      "identified": 1,
+      "unknown": 0,
+      "zones": {}
+    },
+    {
+      "timestamp": "2025-11-28T07:09:21.000656",
+      "total": 1,
+      "identified": 1,
+      "unknown": 0,
+      "zones": {}
+    },
+    {
+      "timestamp": "2025-11-28T07:09:22.124036",
+      "total": 1,
+      "identified": 1,
+      "unknown": 0,
+      "zones": {}
+    },
+    {
+      "timestamp": "2025-11-28T07:09:23.309180",
+      "total": 1,
+      "identified": 1,
+      "unknown": 0,
+      "zones": {}
+    },
+    {
+      "timestamp": "2025-11-28T07:09:24.562672",
+      "total": 1,
+      "identified": 1,
+      "unknown": 0,
+      "zones": {}
+    },
+    {
+      "timestamp": "2025-11-28T07:09:25.894238",
+      "total": 2,
+      "identified": 2,
+      "unknown": 0,
+      "zones": {}
+    },
+    {
+      "timestamp": "2025-11-28T07:09:27.169239",
+      "total": 1,
+      "identified": 1,
+      "unknown": 0,
+      "zones": {}
+    },
+    {
+      "timestamp": "2025-11-28T07:09:28.369372",
+      "total": 1,
+      "identified": 1,
+      "unknown": 0,
+      "zones": {}
+    },
+    {
+      "timestamp": "2025-11-28T07:09:29.665129",
+      "total": 1,
+      "identified": 1,
+      "unknown": 0,
+      "zones": {}
+    },
+    {
+      "timestamp": "2025-11-28T07:09:30.898087",
+      "total": 1,
+      "identified": 1,
+      "unknown": 0,
+      "zones": {}
+    },
+    {
+      "timestamp": "2025-11-28T07:09:32.029874",
+      "total": 1,
+      "identified": 1,
+      "unknown": 0,
+      "zones": {}
+    },
+    {
+      "timestamp": "2025-11-28T07:09:33.329027",
+      "total": 1,
+      "identified": 1,
+      "unknown": 0,
+      "zones": {}
+    },
+    {
+      "timestamp": "2025-11-28T07:09:34.587794",
+      "total": 1,
+      "identified": 1,
+      "unknown": 0,
+      "zones": {}
+    },
+    {
+      "timestamp": "2025-11-28T07:09:35.810752",
+      "total": 1,
+      "identified": 1,
+      "unknown": 0,
+      "zones": {}
+    },
+    {
+      "timestamp": "2025-11-28T07:09:36.949043",
+      "total": 1,
+      "identified": 1,
+      "unknown": 0,
+      "zones": {}
+    },
+    {
+      "timestamp": "2025-11-28T07:09:38.153363",
+      "total": 1,
+      "identified": 1,
+      "unknown": 0,
+      "zones": {}
+    },
+    {
+      "timestamp": "2025-11-28T07:09:39.337947",
+      "total": 1,
+      "identified": 1,
+      "unknown": 0,
+      "zones": {}
+    },
+    {
+      "timestamp": "2025-11-28T07:09:40.490663",
+      "total": 1,
+      "identified": 1,
+      "unknown": 0,
+      "zones": {}
+    },
+    {
+      "timestamp": "2025-11-28T07:09:41.647556",
+      "total": 1,
+      "identified": 1,
+      "unknown": 0,
+      "zones": {}
+    },
+    {
+      "timestamp": "2025-11-28T07:09:42.640338",
+      "total": 0,
+      "identified": 0,
+      "unknown": 0,
+      "zones": {}
+    },
+    {
+      "timestamp": "2025-11-28T07:09:43.590287",
+      "total": 0,
+      "identified": 0,
+      "unknown": 0,
+      "zones": {}
+    },
+    {
+      "timestamp": "2025-11-28T07:09:44.546334",
+      "total": 0,
+      "identified": 0,
+      "unknown": 0,
+      "zones": {}
+    },
+    {
+      "timestamp": "2025-11-28T07:09:45.526686",
+      "total": 0,
+      "identified": 0,
+      "unknown": 0,
+      "zones": {}
+    },
+    {
+      "timestamp": "2025-11-28T07:09:46.475736",
+      "total": 0,
+      "identified": 0,
+      "unknown": 0,
+      "zones": {}
+    },
+    {
+      "timestamp": "2025-11-28T07:09:47.373200",
+      "total": 0,
+      "identified": 0,
+      "unknown": 0,
+      "zones": {}
+    },
+    {
+      "timestamp": "2025-11-28T07:09:48.277106",
+      "total": 0,
+      "identified": 0,
+      "unknown": 0,
+      "zones": {}
+    },
+    {
+      "timestamp": "2025-11-28T07:09:49.156119",
+      "total": 0,
+      "identified": 0,
+      "unknown": 0,
+      "zones": {}
+    },
+    {
+      "timestamp": "2025-11-28T07:09:50.140698",
+      "total": 0,
+      "identified": 0,
+      "unknown": 0,
+      "zones": {}
+    },
+    {
+      "timestamp": "2025-11-28T07:09:51.062056",
+      "total": 0,
+      "identified": 0,
+      "unknown": 0,
+      "zones": {}
+    },
+    {
+      "timestamp": "2025-11-28T07:09:51.914881",
+      "total": 0,
+      "identified": 0,
+      "unknown": 0,
+      "zones": {}
+    },
+    {
+      "timestamp": "2025-11-28T07:09:52.832245",
+      "total": 0,
+      "identified": 0,
+      "unknown": 0,
+      "zones": {}
+    },
+    {
+      "timestamp": "2025-11-28T07:09:53.745503",
+      "total": 0,
+      "identified": 0,
+      "unknown": 0,
+      "zones": {}
+    },
+    {
+      "timestamp": "2025-11-28T07:09:54.674844",
+      "total": 0,
+      "identified": 0,
+      "unknown": 0,
+      "zones": {}
+    },
+    {
+      "timestamp": "2025-11-28T07:09:55.615692",
+      "total": 0,
+      "identified": 0,
+      "unknown": 0,
+      "zones": {}
+    },
+    {
+      "timestamp": "2025-11-28T07:09:56.490750",
+      "total": 0,
+      "identified": 0,
+      "unknown": 0,
+      "zones": {}
+    },
+    {
+      "timestamp": "2025-11-28T07:09:57.395127",
+      "total": 0,
+      "identified": 0,
+      "unknown": 0,
+      "zones": {}
+    },
+    {
+      "timestamp": "2025-11-28T07:09:58.360984",
+      "total": 0,
+      "identified": 0,
+      "unknown": 0,
+      "zones": {}
+    },
+    {
+      "timestamp": "2025-11-28T07:09:59.317292",
+      "total": 0,
+      "identified": 0,
+      "unknown": 0,
+      "zones": {}
+    },
+    {
+      "timestamp": "2025-11-28T07:10:00.306325",
+      "total": 0,
+      "identified": 0,
+      "unknown": 0,
+      "zones": {}
+    },
+    {
+      "timestamp": "2025-11-28T07:10:01.209398",
+      "total": 0,
+      "identified": 0,
+      "unknown": 0,
+      "zones": {}
+    },
+    {
+      "timestamp": "2025-11-28T07:10:02.142950",
+      "total": 0,
+      "identified": 0,
+      "unknown": 0,
+      "zones": {}
+    },
+    {
+      "timestamp": "2025-11-28T07:10:03.123170",
+      "total": 0,
+      "identified": 0,
+      "unknown": 0,
+      "zones": {}
+    },
+    {
+      "timestamp": "2025-11-28T07:10:04.024762",
+      "total": 0,
+      "identified": 0,
+      "unknown": 0,
+      "zones": {}
+    },
+    {
+      "timestamp": "2025-11-28T07:10:04.939534",
+      "total": 0,
+      "identified": 0,
+      "unknown": 0,
+      "zones": {}
+    },
+    {
+      "timestamp": "2025-11-28T07:10:05.903470",
+      "total": 0,
+      "identified": 0,
+      "unknown": 0,
+      "zones": {}
+    },
+    {
+      "timestamp": "2025-11-28T07:10:06.787443",
+      "total": 0,
+      "identified": 0,
+      "unknown": 0,
+      "zones": {}
+    },
+    {
+      "timestamp": "2025-11-28T07:10:07.718329",
+      "total": 0,
+      "identified": 0,
+      "unknown": 0,
+      "zones": {}
+    },
+    {
+      "timestamp": "2025-11-28T07:10:08.701755",
+      "total": 0,
+      "identified": 0,
+      "unknown": 0,
+      "zones": {}
+    },
+    {
+      "timestamp": "2025-11-28T07:10:09.612121",
+      "total": 0,
+      "identified": 0,
+      "unknown": 0,
+      "zones": {}
+    }
+  ],
+  "people_log": [
+    {
+      "timestamp": "2025-11-28T07:09:12.661768",
+      "track_id": 1,
+      "identity": "Kevin Armas",
+      "confidence": 0.6815733934061348
+    },
+    {
+      "timestamp": "2025-11-28T07:09:12.878043",
+      "track_id": 1,
+      "identity": "Kevin Armas",
+      "confidence": 0.666593767085861
+    },
+    {
+      "timestamp": "2025-11-28T07:09:13.095074",
+      "track_id": 1,
+      "identity": "Kevin Armas",
+      "confidence": 0.6627838776257403
+    },
+    {
+      "timestamp": "2025-11-28T07:09:13.286372",
+      "track_id": 1,
+      "identity": "Kevin Armas",
+      "confidence": 0.6903559010637896
+    },
+    {
+      "timestamp": "2025-11-28T07:09:13.475546",
+      "track_id": 1,
+      "identity": "Kevin Armas",
+      "confidence": 0.6995344079810605
+    },
+    {
+      "timestamp": "2025-11-28T07:09:13.671706",
+      "track_id": 1,
+      "identity": "Kevin Armas",
+      "confidence": 0.6762083596474397
+    },
+    {
+      "timestamp": "2025-11-28T07:09:13.856355",
+      "track_id": 1,
+      "identity": "Kevin Armas",
+      "confidence": 0.6660615411746633
+    },
+    {
+      "timestamp": "2025-11-28T07:09:14.088854",
+      "track_id": 1,
+      "identity": "Kevin Armas",
+      "confidence": 0.6827496428838598
+    },
+    {
+      "timestamp": "2025-11-28T07:09:14.270792",
+      "track_id": 1,
+      "identity": "Kevin Armas",
+      "confidence": 0.6679810117244618
+    },
+    {
+      "timestamp": "2025-11-28T07:09:14.459253",
+      "track_id": 1,
+      "identity": "Kevin Armas",
+      "confidence": 0.6822023421550771
+    },
+    {
+      "timestamp": "2025-11-28T07:09:14.662485",
+      "track_id": 1,
+      "identity": "Kevin Armas",
+      "confidence": 0.6772729520023861
+    },
+    {
+      "timestamp": "2025-11-28T07:09:14.855115",
+      "track_id": 1,
+      "identity": "Kevin Armas",
+      "confidence": 0.6481456438940916
+    },
+    {
+      "timestamp": "2025-11-28T07:09:15.065513",
+      "track_id": 1,
+      "identity": "Kevin Armas",
+      "confidence": 0.6512658357745515
+    },
+    {
+      "timestamp": "2025-11-28T07:09:15.307059",
+      "track_id": 1,
+      "identity": "Kevin Armas",
+      "confidence": 0.6616685342492218
+    },
+    {
+      "timestamp": "2025-11-28T07:09:15.536702",
+      "track_id": 1,
+      "identity": "Kevin Armas",
+      "confidence": 0.6701447015561162
+    },
+    {
+      "timestamp": "2025-11-28T07:09:15.735432",
+      "track_id": 1,
+      "identity": "Kevin Armas",
+      "confidence": 0.6602445124206172
+    },
+    {
+      "timestamp": "2025-11-28T07:09:15.923798",
+      "track_id": 1,
+      "identity": "Kevin Armas",
+      "confidence": 0.6464052216948638
+    },
+    {
+      "timestamp": "2025-11-28T07:09:16.099742",
+      "track_id": 1,
+      "identity": "Kevin Armas",
+      "confidence": 0.6806990045693814
+    },
+    {
+      "timestamp": "2025-11-28T07:09:16.288172",
+      "track_id": 1,
+      "identity": "Kevin Armas",
+      "confidence": 0.6840308110542951
+    },
+    {
+      "timestamp": "2025-11-28T07:09:16.506716",
+      "track_id": 1,
+      "identity": "Kevin Armas",
+      "confidence": 0.6533037773931769
+    },
+    {
+      "timestamp": "2025-11-28T07:09:16.712676",
+      "track_id": 1,
+      "identity": "Kevin Armas",
+      "confidence": 0.6539215555580311
+    },
+    {
+      "timestamp": "2025-11-28T07:09:16.929472",
+      "track_id": 1,
+      "identity": "Kevin Armas",
+      "confidence": 0.6591527857518975
+    },
+    {
+      "timestamp": "2025-11-28T07:09:17.129493",
+      "track_id": 1,
+      "identity": "Kevin Armas",
+      "confidence": 0.6658262775801318
+    },
+    {
+      "timestamp": "2025-11-28T07:09:17.345514",
+      "track_id": 1,
+      "identity": "Kevin Armas",
+      "confidence": 0.6520871818528702
+    },
+    {
+      "timestamp": "2025-11-28T07:09:17.546646",
+      "track_id": 1,
+      "identity": "Kevin Armas",
+      "confidence": 0.6598931029413039
+    },
+    {
+      "timestamp": "2025-11-28T07:09:17.739698",
+      "track_id": 1,
+      "identity": "Kevin Armas",
+      "confidence": 0.6388914805306192
+    },
+    {
+      "timestamp": "2025-11-28T07:09:17.955018",
+      "track_id": 1,
+      "identity": "Kevin Armas",
+      "confidence": 0.6791649572431468
+    },
+    {
+      "timestamp": "2025-11-28T07:09:18.159416",
+      "track_id": 1,
+      "identity": "Kevin Armas",
+      "confidence": 0.6899009394145184
+    },
+    {
+      "timestamp": "2025-11-28T07:09:18.365548",
+      "track_id": 1,
+      "identity": "Kevin Armas",
+      "confidence": 0.6688321113099744
+    },
+    {
+      "timestamp": "2025-11-28T07:09:18.575739",
+      "track_id": 1,
+      "identity": "Kevin Armas",
+      "confidence": 0.6364561633319878
+    },
+    {
+      "timestamp": "2025-11-28T07:09:18.769506",
+      "track_id": 1,
+      "identity": "Kevin Armas",
+      "confidence": 0.6726319084070453
+    },
+    {
+      "timestamp": "2025-11-28T07:09:18.963940",
+      "track_id": 1,
+      "identity": "Kevin Armas",
+      "confidence": 0.6390887373124386
+    },
+    {
+      "timestamp": "2025-11-28T07:09:19.228788",
+      "track_id": 1,
+      "identity": "Kevin Armas",
+      "confidence": 0.6682361760893727
+    },
+    {
+      "timestamp": "2025-11-28T07:09:19.427560",
+      "track_id": 1,
+      "identity": "Kevin Armas",
+      "confidence": 0.6612873637310804
+    },
+    {
+      "timestamp": "2025-11-28T07:09:19.610553",
+      "track_id": 1,
+      "identity": "Kevin Armas",
+      "confidence": 0.7424013392922428
+    },
+    {
+      "timestamp": "2025-11-28T07:09:19.791032",
+      "track_id": 1,
+      "identity": "Kevin Armas",
+      "confidence": 0.7606023961854897
+    },
+    {
+      "timestamp": "2025-11-28T07:09:19.970178",
+      "track_id": 1,
+      "identity": "Kevin Armas",
+      "confidence": 0.7626658241950204
+    },
+    {
+      "timestamp": "2025-11-28T07:09:20.190625",
+      "track_id": 1,
+      "identity": "Kevin Armas",
+      "confidence": 0.7528623459906163
+    },
+    {
+      "timestamp": "2025-11-28T07:09:20.428360",
+      "track_id": 1,
+      "identity": "Kevin Armas",
+      "confidence": 0.7784930931070284
+    },
+    {
+      "timestamp": "2025-11-28T07:09:20.651593",
+      "track_id": 1,
+      "identity": "Kevin Armas",
+      "confidence": 0.7631865050164568
+    },
+    {
+      "timestamp": "2025-11-28T07:09:20.855555",
+      "track_id": 1,
+      "identity": "Kevin Armas",
+      "confidence": 0.7773065342795641
+    },
+    {
+      "timestamp": "2025-11-28T07:09:21.062385",
+      "track_id": 1,
+      "identity": "Kevin Armas",
+      "confidence": 0.7363801387353472
+    },
+    {
+      "timestamp": "2025-11-28T07:09:21.248393",
+      "track_id": 1,
+      "identity": "Kevin Armas",
+      "confidence": 0.6837463929883352
+    },
+    {
+      "timestamp": "2025-11-28T07:09:21.431452",
+      "track_id": 1,
+      "identity": "Kevin Armas",
+      "confidence": 0.749888368770055
+    },
+    {
+      "timestamp": "2025-11-28T07:09:21.626164",
+      "track_id": 1,
+      "identity": "Kevin Armas",
+      "confidence": 0.7006465981195656
+    },
+    {
+      "timestamp": "2025-11-28T07:09:21.813055",
+      "track_id": 1,
+      "identity": "Kevin Armas",
+      "confidence": 0.7236720847879681
+    },
+    {
+      "timestamp": "2025-11-28T07:09:21.999935",
+      "track_id": 1,
+      "identity": "Kevin Armas",
+      "confidence": 0.7264896786093306
+    },
+    {
+      "timestamp": "2025-11-28T07:09:22.186156",
+      "track_id": 1,
+      "identity": "Kevin Armas",
+      "confidence": 0.7296956508077146
+    },
+    {
+      "timestamp": "2025-11-28T07:09:22.380088",
+      "track_id": 1,
+      "identity": "Kevin Armas",
+      "confidence": 0.7203062684417446
+    },
+    {
+      "timestamp": "2025-11-28T07:09:22.577370",
+      "track_id": 1,
+      "identity": "Kevin Armas",
+      "confidence": 0.7076465634259801
+    },
+    {
+      "timestamp": "2025-11-28T07:09:22.777169",
+      "track_id": 1,
+      "identity": "Kevin Armas",
+      "confidence": 0.7404397682784543
+    },
+    {
+      "timestamp": "2025-11-28T07:09:22.976385",
+      "track_id": 1,
+      "identity": "Kevin Armas",
+      "confidence": 0.6909687134755211
+    },
+    {
+      "timestamp": "2025-11-28T07:09:23.179272",
+      "track_id": 1,
+      "identity": "Kevin Armas",
+      "confidence": 0.7568286020227999
+    },
+    {
+      "timestamp": "2025-11-28T07:09:23.375594",
+      "track_id": 1,
+      "identity": "Kevin Armas",
+      "confidence": 0.7424363500646315
+    },
+    {
+      "timestamp": "2025-11-28T07:09:23.574585",
+      "track_id": 1,
+      "identity": "Kevin Armas",
+      "confidence": 0.7739143596226337
+    },
+    {
+      "timestamp": "2025-11-28T07:09:23.773162",
+      "track_id": 1,
+      "identity": "Kevin Armas",
+      "confidence": 0.7479722237233781
+    },
+    {
+      "timestamp": "2025-11-28T07:09:23.985363",
+      "track_id": 1,
+      "identity": "Kevin Armas",
+      "confidence": 0.7420734346449473
+    },
+    {
+      "timestamp": "2025-11-28T07:09:24.235361",
+      "track_id": 1,
+      "identity": "Kevin Armas",
+      "confidence": 0.7573920841580858
+    },
+    {
+      "timestamp": "2025-11-28T07:09:24.434093",
+      "track_id": 1,
+      "identity": "Kevin Armas",
+      "confidence": 0.7140454361249271
+    },
+    {
+      "timestamp": "2025-11-28T07:09:24.634431",
+      "track_id": 1,
+      "identity": "Kevin Armas",
+      "confidence": 0.7782525376130813
+    },
+    {
+      "timestamp": "2025-11-28T07:09:24.873454",
+      "track_id": 1,
+      "identity": "Kevin Armas",
+      "confidence": 0.6227988797793149
+    },
+    {
+      "timestamp": "2025-11-28T07:09:25.153350",
+      "track_id": 3,
+      "identity": "Kevin Armas",
+      "confidence": 0.6539466294394332
+    },
+    {
+      "timestamp": "2025-11-28T07:09:25.438624",
+      "track_id": 3,
+      "identity": "Kevin Armas",
+      "confidence": 0.643731270511237
+    },
+    {
+      "timestamp": "2025-11-28T07:09:25.514810",
+      "track_id": 1,
+      "identity": "Kevin Armas",
+      "confidence": 0.6160350881676024
+    },
+    {
+      "timestamp": "2025-11-28T07:09:25.734131",
+      "track_id": 3,
+      "identity": "Kevin Armas",
+      "confidence": 0.7141858175844329
+    },
+    {
+      "timestamp": "2025-11-28T07:09:25.865033",
+      "track_id": 1,
+      "identity": "Kevin Armas",
+      "confidence": 0.680727247241924
+    },
+    {
+      "timestamp": "2025-11-28T07:09:25.974891",
+      "track_id": 3,
+      "identity": "Kevin Armas",
+      "confidence": 0.612760601679133
+    },
+    {
+      "timestamp": "2025-11-28T07:09:26.159566",
+      "track_id": 1,
+      "identity": "Kevin Armas",
+      "confidence": 0.6208682405585333
+    },
+    {
+      "timestamp": "2025-11-28T07:09:26.377933",
+      "track_id": 1,
+      "identity": "Kevin Armas",
+      "confidence": 0.612901175630832
+    },
+    {
+      "timestamp": "2025-11-28T07:09:26.589134",
+      "track_id": 1,
+      "identity": "Kevin Armas",
+      "confidence": 0.6671377403364329
+    },
+    {
+      "timestamp": "2025-11-28T07:09:26.777875",
+      "track_id": 1,
+      "identity": "Kevin Armas",
+      "confidence": 0.6940715688347502
+    },
+    {
+      "timestamp": "2025-11-28T07:09:26.970012",
+      "track_id": 1,
+      "identity": "Kevin Armas",
+      "confidence": 0.708365099320651
+    },
+    {
+      "timestamp": "2025-11-28T07:09:27.169218",
+      "track_id": 1,
+      "identity": "Kevin Armas",
+      "confidence": 0.6772743836124425
+    },
+    {
+      "timestamp": "2025-11-28T07:09:27.364327",
+      "track_id": 1,
+      "identity": "Kevin Armas",
+      "confidence": 0.6737182102166879
+    },
+    {
+      "timestamp": "2025-11-28T07:09:27.555440",
+      "track_id": 1,
+      "identity": "Kevin Armas",
+      "confidence": 0.6894954881476387
+    },
+    {
+      "timestamp": "2025-11-28T07:09:27.744870",
+      "track_id": 1,
+      "identity": "Kevin Armas",
+      "confidence": 0.6555940683129133
+    },
+    {
+      "timestamp": "2025-11-28T07:09:27.964466",
+      "track_id": 1,
+      "identity": "Kevin Armas",
+      "confidence": 0.6870177855656012
+    },
+    {
+      "timestamp": "2025-11-28T07:09:28.174557",
+      "track_id": 1,
+      "identity": "Kevin Armas",
+      "confidence": 0.6903054071683821
+    },
+    {
+      "timestamp": "2025-11-28T07:09:28.369351",
+      "track_id": 1,
+      "identity": "Kevin Armas",
+      "confidence": 0.6801108144140928
+    },
+    {
+      "timestamp": "2025-11-28T07:09:28.571172",
+      "track_id": 1,
+      "identity": "Kevin Armas",
+      "confidence": 0.6567444956596948
+    },
+    {
+      "timestamp": "2025-11-28T07:09:28.768674",
+      "track_id": 1,
+      "identity": "Kevin Armas",
+      "confidence": 0.6869035921695603
+    },
+    {
+      "timestamp": "2025-11-28T07:09:28.991379",
+      "track_id": 1,
+      "identity": "Kevin Armas",
+      "confidence": 0.6857577877263852
+    },
+    {
+      "timestamp": "2025-11-28T07:09:29.254202",
+      "track_id": 1,
+      "identity": "Kevin Armas",
+      "confidence": 0.6492798851997207
+    },
+    {
+      "timestamp": "2025-11-28T07:09:29.466531",
+      "track_id": 1,
+      "identity": "Kevin Armas",
+      "confidence": 0.6392467457223903
+    },
+    {
+      "timestamp": "2025-11-28T07:09:29.665109",
+      "track_id": 1,
+      "identity": "Kevin Armas",
+      "confidence": 0.659870702520224
+    },
+    {
+      "timestamp": "2025-11-28T07:09:29.858520",
+      "track_id": 1,
+      "identity": "Kevin Armas",
+      "confidence": 0.6251118871196468
+    },
+    {
+      "timestamp": "2025-11-28T07:09:30.052183",
+      "track_id": 1,
+      "identity": "Kevin Armas",
+      "confidence": 0.6654810629275068
+    },
+    {
+      "timestamp": "2025-11-28T07:09:30.279055",
+      "track_id": 1,
+      "identity": "Kevin Armas",
+      "confidence": 0.6844346587397767
+    },
+    {
+      "timestamp": "2025-11-28T07:09:30.498542",
+      "track_id": 1,
+      "identity": "Kevin Armas",
+      "confidence": 0.6404631720372762
+    },
+    {
+      "timestamp": "2025-11-28T07:09:30.702459",
+      "track_id": 1,
+      "identity": "Kevin Armas",
+      "confidence": 0.7036642975378247
+    },
+    {
+      "timestamp": "2025-11-28T07:09:30.898071",
+      "track_id": 1,
+      "identity": "Kevin Armas",
+      "confidence": 0.6684446936698233
+    },
+    {
+      "timestamp": "2025-11-28T07:09:31.086060",
+      "track_id": 1,
+      "identity": "Kevin Armas",
+      "confidence": 0.6581545046001622
+    },
+    {
+      "timestamp": "2025-11-28T07:09:31.280335",
+      "track_id": 1,
+      "identity": "Kevin Armas",
+      "confidence": 0.6763972368455917
+    },
+    {
+      "timestamp": "2025-11-28T07:09:31.466990",
+      "track_id": 1,
+      "identity": "Kevin Armas",
+      "confidence": 0.6725756451608307
+    },
+    {
+      "timestamp": "2025-11-28T07:09:31.650606",
+      "track_id": 1,
+      "identity": "Kevin Armas",
+      "confidence": 0.694298497020047
+    },
+    {
+      "timestamp": "2025-11-28T07:09:31.835440",
+      "track_id": 1,
+      "identity": "Kevin Armas",
+      "confidence": 0.690622465252688
+    },
+    {
+      "timestamp": "2025-11-28T07:09:32.029853",
+      "track_id": 1,
+      "identity": "Kevin Armas",
+      "confidence": 0.6927145328044291
+    },
+    {
+      "timestamp": "2025-11-28T07:09:32.273018",
+      "track_id": 1,
+      "identity": "Kevin Armas",
+      "confidence": 0.6924423105804324
+    },
+    {
+      "timestamp": "2025-11-28T07:09:32.498574",
+      "track_id": 1,
+      "identity": "Kevin Armas",
+      "confidence": 0.6826529655889724
+    },
+    {
+      "timestamp": "2025-11-28T07:09:32.706926",
+      "track_id": 1,
+      "identity": "Kevin Armas",
+      "confidence": 0.6863193621235304
+    },
+    {
+      "timestamp": "2025-11-28T07:09:32.901858",
+      "track_id": 1,
+      "identity": "Kevin Armas",
+      "confidence": 0.6633347826979307
+    },
+    {
+      "timestamp": "2025-11-28T07:09:33.121351",
+      "track_id": 1,
+      "identity": "Kevin Armas",
+      "confidence": 0.689070560382791
+    },
+    {
+      "timestamp": "2025-11-28T07:09:33.329011",
+      "track_id": 1,
+      "identity": "Kevin Armas",
+      "confidence": 0.6602504518631495
+    },
+    {
+      "timestamp": "2025-11-28T07:09:33.522958",
+      "track_id": 1,
+      "identity": "Kevin Armas",
+      "confidence": 0.6745538359849772
+    },
+    {
+      "timestamp": "2025-11-28T07:09:33.725905",
+      "track_id": 1,
+      "identity": "Kevin Armas",
+      "confidence": 0.6331347679920658
+    },
+    {
+      "timestamp": "2025-11-28T07:09:33.927662",
+      "track_id": 1,
+      "identity": "Kevin Armas",
+      "confidence": 0.6706601563117651
+    },
+    {
+      "timestamp": "2025-11-28T07:09:34.132619",
+      "track_id": 1,
+      "identity": "Kevin Armas",
+      "confidence": 0.6679118035735849
+    },
+    {
+      "timestamp": "2025-11-28T07:09:34.394145",
+      "track_id": 1,
+      "identity": "Kevin Armas",
+      "confidence": 0.6600440366065417
+    },
+    {
+      "timestamp": "2025-11-28T07:09:34.587776",
+      "track_id": 1,
+      "identity": "Kevin Armas",
+      "confidence": 0.6831123310135652
+    },
+    {
+      "timestamp": "2025-11-28T07:09:34.775994",
+      "track_id": 1,
+      "identity": "Kevin Armas",
+      "confidence": 0.683542722133192
+    },
+    {
+      "timestamp": "2025-11-28T07:09:34.946729",
+      "track_id": 1,
+      "identity": "Kevin Armas",
+      "confidence": 0.6714267111996872
+    },
+    {
+      "timestamp": "2025-11-28T07:09:35.152850",
+      "track_id": 1,
+      "identity": "Kevin Armas",
+      "confidence": 0.6264817805322024
+    },
+    {
+      "timestamp": "2025-11-28T07:09:35.380483",
+      "track_id": 1,
+      "identity": "Kevin Armas",
+      "confidence": 0.6516995725211565
+    },
+    {
+      "timestamp": "2025-11-28T07:09:35.602146",
+      "track_id": 1,
+      "identity": "Kevin Armas",
+      "confidence": 0.6475771551628788
+    },
+    {
+      "timestamp": "2025-11-28T07:09:35.810736",
+      "track_id": 1,
+      "identity": "Kevin Armas",
+      "confidence": 0.6416569740875611
+    },
+    {
+      "timestamp": "2025-11-28T07:09:36.001108",
+      "track_id": 1,
+      "identity": "Kevin Armas",
+      "confidence": 0.6502579831500757
+    },
+    {
+      "timestamp": "2025-11-28T07:09:36.200523",
+      "track_id": 1,
+      "identity": "Kevin Armas",
+      "confidence": 0.6552938178526159
+    },
+    {
+      "timestamp": "2025-11-28T07:09:36.394610",
+      "track_id": 1,
+      "identity": "Kevin Armas",
+      "confidence": 0.6763059269392396
+    },
+    {
+      "timestamp": "2025-11-28T07:09:36.580654",
+      "track_id": 1,
+      "identity": "Kevin Armas",
+      "confidence": 0.7368712855375523
+    },
+    {
+      "timestamp": "2025-11-28T07:09:36.769492",
+      "track_id": 1,
+      "identity": "Kevin Armas",
+      "confidence": 0.7352624438538993
+    },
+    {
+      "timestamp": "2025-11-28T07:09:36.949026",
+      "track_id": 1,
+      "identity": "Kevin Armas",
+      "confidence": 0.7178210439808044
+    },
+    {
+      "timestamp": "2025-11-28T07:09:37.148389",
+      "track_id": 1,
+      "identity": "Kevin Armas",
+      "confidence": 0.6880191150830701
+    },
+    {
+      "timestamp": "2025-11-28T07:09:37.345323",
+      "track_id": 1,
+      "identity": "Kevin Armas",
+      "confidence": 0.6969779229703079
+    },
+    {
+      "timestamp": "2025-11-28T07:09:37.556632",
+      "track_id": 1,
+      "identity": "Kevin Armas",
+      "confidence": 0.703587608467811
+    },
+    {
+      "timestamp": "2025-11-28T07:09:37.752400",
+      "track_id": 1,
+      "identity": "Kevin Armas",
+      "confidence": 0.6878860265595571
+    },
+    {
+      "timestamp": "2025-11-28T07:09:37.947519",
+      "track_id": 1,
+      "identity": "Kevin Armas",
+      "confidence": 0.6654491385540348
+    },
+    {
+      "timestamp": "2025-11-28T07:09:38.153345",
+      "track_id": 1,
+      "identity": "Kevin Armas",
+      "confidence": 0.6967279451490342
+    },
+    {
+      "timestamp": "2025-11-28T07:09:38.345747",
+      "track_id": 1,
+      "identity": "Kevin Armas",
+      "confidence": 0.6734154427021859
+    },
+    {
+      "timestamp": "2025-11-28T07:09:38.541394",
+      "track_id": 1,
+      "identity": "Kevin Armas",
+      "confidence": 0.6982490193801862
+    },
+    {
+      "timestamp": "2025-11-28T07:09:38.734348",
+      "track_id": 1,
+      "identity": "Kevin Armas",
+      "confidence": 0.6921586215856681
+    },
+    {
+      "timestamp": "2025-11-28T07:09:38.925958",
+      "track_id": 1,
+      "identity": "Kevin Armas",
+      "confidence": 0.6913536816422933
+    },
+    {
+      "timestamp": "2025-11-28T07:09:39.103832",
+      "track_id": 1,
+      "identity": "Kevin Armas",
+      "confidence": 0.6930302583770659
+    },
+    {
+      "timestamp": "2025-11-28T07:09:39.337926",
+      "track_id": 1,
+      "identity": "Kevin Armas",
+      "confidence": 0.6639577048874237
+    },
+    {
+      "timestamp": "2025-11-28T07:09:39.521176",
+      "track_id": 1,
+      "identity": "Kevin Armas",
+      "confidence": 0.7436883961931262
+    },
+    {
+      "timestamp": "2025-11-28T07:09:39.703959",
+      "track_id": 1,
+      "identity": "Kevin Armas",
+      "confidence": 0.7278096753095651
+    },
+    {
+      "timestamp": "2025-11-28T07:09:39.887848",
+      "track_id": 1,
+      "identity": "Kevin Armas",
+      "confidence": 0.6729690444412241
+    },
+    {
+      "timestamp": "2025-11-28T07:09:40.081301",
+      "track_id": 1,
+      "identity": "Kevin Armas",
+      "confidence": 0.6642576302179843
+    },
+    {
+      "timestamp": "2025-11-28T07:09:40.319824",
+      "track_id": 1,
+      "identity": "Kevin Armas",
+      "confidence": 0.6393755760528937
+    },
+    {
+      "timestamp": "2025-11-28T07:09:40.555927",
+      "track_id": 1,
+      "identity": "Kevin Armas",
+      "confidence": 0.5875470132174261
+    },
+    {
+      "timestamp": "2025-11-28T07:09:40.913596",
+      "track_id": 1,
+      "identity": "Kevin Armas",
+      "confidence": 0.5894763148272761
+    },
+    {
+      "timestamp": "2025-11-28T07:09:41.165154",
+      "track_id": 1,
+      "identity": "Kevin Armas",
+      "confidence": 0.6908508788507826
+    },
+    {
+      "timestamp": "2025-11-28T07:09:41.379881",
+      "track_id": 1,
+      "identity": "Kevin Armas",
+      "confidence": 0.6419832223857309
+    },
+    {
+      "timestamp": "2025-11-28T07:09:41.589926",
+      "track_id": 1,
+      "identity": "Kevin Armas",
+      "confidence": 0.691689356800973
+    },
+    {
+      "timestamp": "2025-11-28T07:09:41.768569",
+      "track_id": 1,
+      "identity": "Kevin Armas",
+      "confidence": 0.6446758692062493
+    },
+    {
+      "timestamp": "2025-11-28T07:09:41.975685",
+      "track_id": 1,
+      "identity": "Kevin Armas",
+      "confidence": 0.6766042832836028
+    },
+    {
+      "timestamp": "2025-11-28T07:09:42.160118",
+      "track_id": 1,
+      "identity": "Kevin Armas",
+      "confidence": 0.7020990936421222
+    }
+  ]
+}

@@ -1,0 +1,98 @@
+{
+  "summary": {
+    "session": {
+      "start_time": "2025-11-28T07:19:36.855691",
+      "duration_seconds": 47.321301,
+      "frames_processed": 308
+    },
+    "current": {
+      "total_people": 0,
+      "identified": 0,
+      "unknown": 0,
+      "zones": {}
+    },
+    "unique": {
+      "total_unique_tracks": 0,
+      "unique_identified_people": 0,
+      "identified_names": [],
+      "unique_unknown": 0
+    },
+    "peak": {
+      "max_people_at_once": 0,
+      "peak_time": null
+    }
+  },
+  "history": [
+    {
+      "timestamp": "2025-11-28T07:20:11.676140",
+      "total": 0,
+      "identified": 0,
+      "unknown": 0,
+      "zones": {}
+    },
+    {
+      "timestamp": "2025-11-28T07:20:13.095526",
+      "total": 0,
+      "identified": 0,
+      "unknown": 0,
+      "zones": {}
+    },
+    {
+      "timestamp": "2025-11-28T07:20:14.506308",
+      "total": 0,
+      "identified": 0,
+      "unknown": 0,
+      "zones": {}
+    },
+    {
+      "timestamp": "2025-11-28T07:20:15.823310",
+      "total": 0,
+      "identified": 0,
+      "unknown": 0,
+      "zones": {}
+    },
+    {
+      "timestamp": "2025-11-28T07:20:17.009909",
+      "total": 0,
+      "identified": 0,
+      "unknown": 0,
+      "zones": {}
+    },
+    {
+      "timestamp": "2025-11-28T07:20:18.386699",
+      "total": 0,
+      "identified": 0,
+      "unknown": 0,
+      "zones": {}
+    },
+    {
+      "timestamp": "2025-11-28T07:20:19.803781",
+      "total": 0,
+      "identified": 0,
+      "unknown": 0,
+      "zones": {}
+    },
+    {
+      "timestamp": "2025-11-28T07:20:21.150124",
+      "total": 0,
+      "identified": 0,
+      "unknown": 0,
+      "zones": {}
+    },
+    {
+      "timestamp": "2025-11-28T07:20:22.610985",
+      "total": 0,
+      "identified": 0,
+      "unknown": 0,
+      "zones": {}
+    },
+    {
+      "timestamp": "2025-11-28T07:20:23.893940",
+      "total": 0,
+      "identified": 0,
+      "unknown": 0,
+      "zones": {}
+    }
+  ],
+  "people_log": []
+}
