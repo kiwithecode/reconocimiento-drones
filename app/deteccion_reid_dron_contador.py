@@ -11,11 +11,39 @@ from collections import defaultdict, deque
 from datetime import datetime
 import json
 import csv
-from config import DATA_DIR, BASE_EMBEDDINGS
+import logging
+from config import DATA_DIR, BASE_EMBEDDINGS, VISUALIZATIONS_DIR
+from visualization_handler import VisualizationHandler, VisualizationConfig
+
+# ============================================================================
+# CONFIGURACIÓN DE LOGGING
+# ============================================================================
+
+# Reducir verbosidad de FFmpeg y OpenCV
+os.environ['OPENCV_LOG_LEVEL'] = 'ERROR'
+os.environ['OPENCV_VIDEOIO_PRIORITY_MSMF'] = '0'
+
+# Configurar logging para la aplicación
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(levelname)s - %(message)s',
+    datefmt='%H:%M:%S'
+)
+logger = logging.getLogger(__name__)
+
+# Suprimir warnings de FFmpeg en stderr
+import warnings
+warnings.filterwarnings('ignore')
 
 # ============================================================================
 # CONFIGURACIÓN OPTIMIZADA PARA DRON DJI FPV CON SISTEMA DE CONTEO
 # ============================================================================
+
+# Parámetros de conexión de stream
+STREAM_RECONNECT_ATTEMPTS = 5  # Intentos de reconexión
+STREAM_RECONNECT_DELAY = 2  # Segundos entre intentos
+MAX_CONSECUTIVE_FRAME_FAILURES = 30  # Frames fallidos antes de reconectar
+STREAM_BUFFER_SIZE = 3  # Tamaño de buffer (menor = menos latencia)
 
 # Parámetros de procesamiento
 FRAME_SKIP = 1
@@ -60,6 +88,17 @@ ZONES = {
     "zona_central": {"x1": 400, "y1": 0, "x2": 880, "y2": 720},
     "zona_salida": {"x1": 880, "y1": 0, "x2": 1280, "y2": 720}
 }
+
+# ============================================================================
+# CONFIGURACIÓN DE VISUALIZACIONES (HSV, LBP, HOG)
+# ============================================================================
+
+# Sistema de visualizaciones en segundo plano
+ENABLE_VISUALIZATIONS = True  # Activar/desactivar sistema completo
+VIZ_SAVE_EVERY_N_FRAMES = 30  # Guardar visualizaciones cada N frames
+VIZ_MAX_PER_PERSON = 10  # Máximo de visualizaciones por persona
+VIZ_ONLY_IDENTIFIED = True  # Solo guardar personas identificadas
+VIZ_MIN_CONFIDENCE = 0.6  # Confianza mínima para guardar
 
 # ============================================================================
 # CLASE PARA ESTADÍSTICAS Y CONTEO
@@ -592,13 +631,80 @@ def main():
     print(f"📊 Sistema de conteo activado")
     print(f"📁 Estadísticas se guardarán en: {counter.output_dir}")
 
-    # Conectar stream
+    # Inicializar sistema de visualizaciones
+    viz_handler = None
+    if ENABLE_VISUALIZATIONS:
+        print(f"\n🎨 Inicializando sistema de visualizaciones...")
+        viz_config = VisualizationConfig(VISUALIZATIONS_DIR)
+        viz_config.ENABLE_VISUALIZATIONS = ENABLE_VISUALIZATIONS
+        viz_config.SAVE_EVERY_N_FRAMES = VIZ_SAVE_EVERY_N_FRAMES
+        viz_config.MAX_SAVES_PER_PERSON = VIZ_MAX_PER_PERSON
+        viz_config.SAVE_ONLY_IDENTIFIED = VIZ_ONLY_IDENTIFIED
+        viz_config.MIN_CONFIDENCE_SAVE = VIZ_MIN_CONFIDENCE
+
+        viz_handler = VisualizationHandler(VISUALIZATIONS_DIR, config=viz_config)
+        viz_handler.start()
+        print(f"✅ Visualizaciones HSV, LBP, HOG activadas")
+        print(f"📁 Visualizaciones en: {VISUALIZATIONS_DIR}")
+    else:
+        print(f"\n⚪ Sistema de visualizaciones desactivado")
+
+    # Conectar stream con configuración robusta
     print("\n🎥 Conectando a stream RTMP...")
     rtmp_url = "rtmp://localhost:1935/live/stream"
-    cap = cv2.VideoCapture(rtmp_url)
 
-    if not cap.isOpened():
-        print("⚠️ No se pudo conectar a RTMP. Probando con webcam...")
+    def connect_to_stream(url, max_retries=STREAM_RECONNECT_ATTEMPTS):
+        """Conecta al stream RTMP con parámetros optimizados para manejar pérdida de paquetes"""
+        for attempt in range(max_retries):
+            logger.info(f"Intento de conexión {attempt + 1}/{max_retries}...")
+
+            try:
+                # Configuración de OpenCV con parámetros FFmpeg
+                cap = cv2.VideoCapture(url, cv2.CAP_FFMPEG)
+
+                # Parámetros para manejar streams inestables
+                cap.set(cv2.CAP_PROP_BUFFERSIZE, STREAM_BUFFER_SIZE)
+                cap.set(cv2.CAP_PROP_FPS, 30)
+
+                # Opciones FFmpeg para manejar errores de stream
+                os.environ['OPENCV_FFMPEG_CAPTURE_OPTIONS'] = (
+                    'rtsp_transport;udp|'
+                    'max_delay;500000|'  # 500ms max delay
+                    'reorder_queue_size;0|'  # Sin reordenamiento
+                    'fflags;nobuffer|'  # Sin buffer extra
+                    'flags;low_delay|'  # Baja latencia
+                    'analyzeduration;1000000|'  # 1 segundo análisis
+                    'probesize;1000000|'  # 1MB probe
+                    'err_detect;ignore_err'  # Ignorar errores menores de decodificación
+                )
+
+                if cap.isOpened():
+                    # Verificar que podemos leer al menos un frame
+                    ret, test_frame = cap.read()
+                    if ret and test_frame is not None and test_frame.size > 0:
+                        logger.info("✅ Conexión exitosa al stream")
+                        return cap
+                    else:
+                        logger.warning("Conexión abierta pero no hay frames válidos")
+                        cap.release()
+                else:
+                    logger.warning("No se pudo abrir la conexión")
+
+            except Exception as e:
+                logger.error(f"Error al conectar: {e}")
+
+            if attempt < max_retries - 1:
+                wait_time = STREAM_RECONNECT_DELAY * (attempt + 1)
+                logger.info(f"Esperando {wait_time}s antes de reintentar...")
+                time.sleep(wait_time)
+
+        logger.error("No se pudo conectar al stream después de múltiples intentos")
+        return None
+
+    cap = connect_to_stream(rtmp_url)
+
+    if cap is None:
+        print("⚠️ No se pudo conectar a RTMP después de varios intentos. Probando con webcam...")
         cap = cv2.VideoCapture(0)
         if not cap.isOpened():
             print("❌ No se pudo conectar")
@@ -612,6 +718,7 @@ def main():
     print("   - 'q': Salir (guarda estadísticas)")
     print("   - 's': Guardar estadísticas ahora")
     print("   - 'r': Reset contadores")
+    print("   - 'v': Ver estadísticas de visualizaciones" if ENABLE_VISUALIZATIONS else "")
     print()
 
     # Variables
@@ -621,10 +728,47 @@ def main():
     fps_counter = 0
     fps_start_time = time.time()
 
+    # Control de reconexión
+    consecutive_read_failures = 0
+    last_valid_frame_time = time.time()
+    total_reconnections = 0
+
     while True:
         ret, frame = cap.read()
-        if not ret:
-            break
+
+        # Manejo de errores de lectura con reconexión
+        if not ret or frame is None:
+            consecutive_read_failures += 1
+
+            # Si llevamos mucho tiempo sin frames válidos, intentar reconectar
+            if consecutive_read_failures >= MAX_CONSECUTIVE_FRAME_FAILURES:
+                logger.warning(f"{consecutive_read_failures} frames fallidos consecutivos. Iniciando reconexión...")
+                total_reconnections += 1
+
+                cap.release()
+                cap = connect_to_stream(rtmp_url)
+
+                if cap is None:
+                    logger.error("No se pudo reconectar. Finalizando...")
+                    break
+
+                consecutive_read_failures = 0
+                logger.info(f"Reconexión #{total_reconnections} exitosa")
+                continue
+
+            # Esperar un poco antes del siguiente intento
+            time.sleep(0.01)
+            continue
+
+        # Frame válido recibido
+        if consecutive_read_failures > 0:
+            logger.info(f"Stream recuperado después de {consecutive_read_failures} frames fallidos")
+        consecutive_read_failures = 0
+        last_valid_frame_time = time.time()
+
+        # Verificar que el frame tenga datos válidos
+        if frame.size == 0 or frame.shape[0] < 10 or frame.shape[1] < 10:
+            continue
 
         frame_count += 1
         fps_counter += 1
@@ -645,26 +789,32 @@ def main():
         process_this_frame = (frame_count % FRAME_SKIP == 0)
 
         if process_this_frame:
-            results = model(frame_small, verbose=False, imgsz=640)
-            detections = []
-            detection_crops = []
+            try:
+                results = model(frame_small, verbose=False, imgsz=640)
+                detections = []
+                detection_crops = []
 
-            for r in results:
-                for box in r.boxes:
-                    if int(box.cls[0]) == 0:
-                        conf = float(box.conf[0])
-                        if conf >= MIN_CONFIDENCE:
-                            x1, y1, x2, y2 = map(int, box.xyxy[0])
-                            if scale_factor != 1.0:
-                                x1, y1 = int(x1 * scale_factor), int(y1 * scale_factor)
-                                x2, y2 = int(x2 * scale_factor), int(y2 * scale_factor)
-                            x1, y1 = max(0, x1), max(0, y1)
-                            x2 = min(original_frame.shape[1], x2)
-                            y2 = min(original_frame.shape[0], y2)
-                            if x2 > x1 and y2 > y1:
-                                detections.append((x1, y1, x2, y2))
-                                crop = original_frame[y1:y2, x1:x2]
-                                detection_crops.append(crop)
+                for r in results:
+                    for box in r.boxes:
+                        if int(box.cls[0]) == 0:
+                            conf = float(box.conf[0])
+                            if conf >= MIN_CONFIDENCE:
+                                x1, y1, x2, y2 = map(int, box.xyxy[0])
+                                if scale_factor != 1.0:
+                                    x1, y1 = int(x1 * scale_factor), int(y1 * scale_factor)
+                                    x2, y2 = int(x2 * scale_factor), int(y2 * scale_factor)
+                                x1, y1 = max(0, x1), max(0, y1)
+                                x2 = min(original_frame.shape[1], x2)
+                                y2 = min(original_frame.shape[0], y2)
+                                if x2 > x1 and y2 > y1:
+                                    detections.append((x1, y1, x2, y2))
+                                    crop = original_frame[y1:y2, x1:x2]
+                                    if crop.size > 0:  # Verificar que el crop sea válido
+                                        detection_crops.append(crop)
+            except Exception as e:
+                logger.error(f"Error en detección YOLO: {e}")
+                detections = []
+                detection_crops = []
 
             matched, unmatched_dets, unmatched_tracks = match_detections_to_tracks(
                 detections, tracks
@@ -697,7 +847,7 @@ def main():
 
                     if crop_idx is not None and crop_idx < len(detection_crops):
                         crop = detection_crops[crop_idx]
-                        if crop.size > 0:
+                        if crop is not None and crop.size > 0 and len(crop.shape) == 3:
                             try:
                                 crop_resized = cv2.resize(crop, (128, 256))
                                 emb = extractor(crop_resized)[0]
@@ -711,7 +861,19 @@ def main():
                                     confidence,
                                     datetime.now()
                                 )
+
+                                # Enviar a sistema de visualizaciones
+                                if viz_handler:
+                                    viz_handler.add_to_queue(
+                                        crop=crop,
+                                        identity=identity,
+                                        confidence=confidence,
+                                        track_id=track.track_id,
+                                        frame_count=frame_count
+                                    )
+
                             except Exception as e:
+                                # Error en Re-ID, continuar sin crash
                                 pass
 
             tracks = [t for t in tracks if t.is_alive()]
@@ -762,6 +924,26 @@ def main():
         elif key == ord('r'):
             print("\n🔄 Reseteando contadores...")
             counter = PeopleCounter()
+        elif key == ord('v') and viz_handler:
+            # Mostrar estadísticas de visualizaciones
+            viz_stats = viz_handler.get_stats()
+            print("\n" + "="*70)
+            print("🎨 ESTADÍSTICAS DE VISUALIZACIONES")
+            print("="*70)
+            print(f"✅ Total procesadas: {viz_stats['total_processed']}")
+            print(f"⏭️  Total omitidas: {viz_stats['total_skipped']}")
+            print(f"📦 Cola actual: {viz_stats['queue_size']}")
+            print(f"📊 Guardados por persona:")
+            for person, count in viz_stats['saves_per_person'].items():
+                print(f"   - {person}: {count}")
+            print("="*70)
+
+    # Detener sistema de visualizaciones
+    if viz_handler:
+        print("\n🎨 Finalizando sistema de visualizaciones...")
+        viz_handler.stop()
+        viz_stats = viz_handler.get_stats()
+        print(f"✅ Visualizaciones procesadas: {viz_stats['total_processed']}")
 
     # Resumen final
     print("\n" + "="*70)
@@ -775,6 +957,14 @@ def main():
     print(f"📈 Pico de personas simultáneas: {stats['peak']['max_people_at_once']}")
     if stats['unique']['identified_names']:
         print(f"📝 Nombres identificados: {', '.join(stats['unique']['identified_names'])}")
+    print(f"🔄 Reconexiones de stream: {total_reconnections}")
+
+    # Resumen de visualizaciones
+    if viz_handler and viz_stats['total_processed'] > 0:
+        print(f"\n🎨 Visualizaciones generadas:")
+        for person, count in viz_stats['saves_per_person'].items():
+            print(f"   - {person}: {count} visualización(es)")
+
     print("="*70)
 
     cap.release()
