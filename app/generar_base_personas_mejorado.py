@@ -19,6 +19,10 @@ import numpy as np
 from torchreid.utils import FeatureExtractor
 from scipy.spatial.distance import cdist, mahalanobis
 from scipy import stats
+from sklearn.metrics import confusion_matrix, classification_report
+from sklearn.metrics.pairwise import cosine_similarity
+import matplotlib.pyplot as plt
+import seaborn as sns
 from config import PERSONAS_BASE, BASE_EMBEDDINGS, MODEL_PATH, DATA_DIR
 
 # ============================================================================
@@ -315,6 +319,242 @@ def generate_embeddings_for_person(person_dir, person_name, extractor):
     }
 
 # ============================================================================
+# EVALUACIÓN - MATRIZ DE CONFUSIÓN
+# ============================================================================
+
+def evaluar_modelo(base_embeddings, personas_base_dir, extractor, threshold=0.70):
+    """
+    Evalúa el modelo con matriz de confusión
+
+    Compara cada imagen individual contra la base de datos
+    para medir precisión, recall y F1-score.
+    """
+    print("\n" + "="*70)
+    print("📊 EVALUANDO MODELO - MATRIZ DE CONFUSIÓN")
+    print("="*70)
+    print(f"   Umbral de identificación: {threshold}")
+
+    etiquetas_reales = []
+    predicciones = []
+    confidencias = []
+
+    # Por cada persona en la base
+    for persona_folder in os.listdir(personas_base_dir):
+        persona_dir = os.path.join(personas_base_dir, persona_folder)
+        if not os.path.isdir(persona_dir):
+            continue
+
+        # Nombre real (ground truth)
+        partes = persona_folder.split("_")
+        if len(partes) >= 3:
+            nombre_real = " ".join(partes[:-1]).replace("_", " ").title()
+        else:
+            nombre_real = persona_folder.replace("_", " ").title()
+
+        # Por cada imagen de la persona
+        for img_file in os.listdir(persona_dir):
+            if not img_file.lower().endswith(('.jpg', '.jpeg', '.png')):
+                continue
+
+            img_path = os.path.join(persona_dir, img_file)
+            image = cv2.imread(img_path)
+            if image is None:
+                continue
+
+            # Generar embedding de la imagen
+            image_resized = cv2.resize(image, (128, 256))
+            emb = extractor(image_resized)[0].cpu().numpy()
+
+            # Normalizar embedding
+            norm = np.linalg.norm(emb)
+            if norm > 0:
+                emb = emb / norm
+
+            # Comparar con base de datos
+            base_embs = np.array([p["embedding"] for p in base_embeddings])
+            similarities = cosine_similarity([emb], base_embs)[0]
+            max_idx = np.argmax(similarities)
+            mejor_score = similarities[max_idx]
+
+            # Predicción
+            if mejor_score >= threshold:
+                prediccion = base_embeddings[max_idx]["nombre"]
+            else:
+                prediccion = "Desconocido"
+
+            etiquetas_reales.append(nombre_real)
+            predicciones.append(prediccion)
+            confidencias.append(mejor_score)
+
+    # Obtener todas las etiquetas únicas
+    todas_etiquetas = sorted(list(set(etiquetas_reales + predicciones)))
+
+    # Generar matriz de confusión
+    cm = confusion_matrix(etiquetas_reales, predicciones, labels=todas_etiquetas)
+
+    # Mostrar matriz de confusión
+    print("\n📋 MATRIZ DE CONFUSIÓN:")
+    print("-"*70)
+
+    # Header
+    header = "Real \\ Pred".ljust(20)
+    for label in todas_etiquetas:
+        header += label[:10].center(12)
+    print(header)
+    print("-"*70)
+
+    # Filas
+    for i, label in enumerate(todas_etiquetas):
+        row = label[:18].ljust(20)
+        for j in range(len(todas_etiquetas)):
+            row += str(cm[i][j]).center(12)
+        print(row)
+
+    print("-"*70)
+
+    # Reporte de clasificación
+    print("\n📈 REPORTE DE CLASIFICACIÓN:")
+    print(classification_report(etiquetas_reales, predicciones, labels=todas_etiquetas, zero_division=0))
+
+    # Métricas adicionales
+    total = len(etiquetas_reales)
+    correctos = sum(1 for r, p in zip(etiquetas_reales, predicciones) if r == p)
+    accuracy = correctos / total * 100 if total > 0 else 0
+
+    print(f"\n📊 RESUMEN:")
+    print(f"   Total de imágenes evaluadas: {total}")
+    print(f"   Predicciones correctas: {correctos}")
+    print(f"   Accuracy: {accuracy:.2f}%")
+    print(f"   Confianza promedio: {np.mean(confidencias)*100:.2f}%")
+
+    # Guardar resultados en CSV
+    results_path = os.path.join(DATA_DIR, "matriz_confusion_resultados.csv")
+    with open(results_path, 'w') as f:
+        f.write("Etiqueta Real,Prediccion,Confianza,Correcto\n")
+        for real, pred, conf in zip(etiquetas_reales, predicciones, confidencias):
+            correcto = "SI" if real == pred else "NO"
+            f.write(f"{real},{pred},{conf:.4f},{correcto}\n")
+
+    print(f"\n💾 Resultados CSV guardados en: {results_path}")
+
+    # =========================================================================
+    # VISUALIZACIÓN GRÁFICA DE LA MATRIZ DE CONFUSIÓN
+    # =========================================================================
+    print("\n🎨 Generando visualización gráfica...")
+
+    # Crear figura con 2 subplots
+    fig, axes = plt.subplots(1, 2, figsize=(16, 6))
+
+    # --- Matriz de Confusión (valores absolutos) ---
+    sns.heatmap(cm, annot=True, fmt='d', cmap='Blues',
+                xticklabels=todas_etiquetas,
+                yticklabels=todas_etiquetas,
+                ax=axes[0],
+                cbar_kws={'label': 'Cantidad'})
+    axes[0].set_title('Matriz de Confusión\n(Valores Absolutos)', fontsize=14, fontweight='bold')
+    axes[0].set_xlabel('Predicción', fontsize=12)
+    axes[0].set_ylabel('Etiqueta Real', fontsize=12)
+    axes[0].tick_params(axis='x', rotation=45)
+    axes[0].tick_params(axis='y', rotation=0)
+
+    # --- Matriz de Confusión (porcentajes normalizados) ---
+    cm_normalized = cm.astype('float') / cm.sum(axis=1)[:, np.newaxis]
+    cm_normalized = np.nan_to_num(cm_normalized)  # Reemplazar NaN por 0
+
+    sns.heatmap(cm_normalized, annot=True, fmt='.2%', cmap='Greens',
+                xticklabels=todas_etiquetas,
+                yticklabels=todas_etiquetas,
+                ax=axes[1],
+                cbar_kws={'label': 'Porcentaje'})
+    axes[1].set_title('Matriz de Confusión\n(Normalizada por Fila)', fontsize=14, fontweight='bold')
+    axes[1].set_xlabel('Predicción', fontsize=12)
+    axes[1].set_ylabel('Etiqueta Real', fontsize=12)
+    axes[1].tick_params(axis='x', rotation=45)
+    axes[1].tick_params(axis='y', rotation=0)
+
+    # Título general
+    fig.suptitle(f'Evaluación del Modelo de Re-Identificación\nAccuracy: {accuracy:.2f}% | Umbral: {threshold}',
+                 fontsize=16, fontweight='bold', y=1.02)
+
+    plt.tight_layout()
+
+    # Guardar imagen
+    img_path = os.path.join(DATA_DIR, "matriz_confusion_visual.png")
+    plt.savefig(img_path, dpi=150, bbox_inches='tight', facecolor='white')
+    print(f"📊 Imagen guardada en: {img_path}")
+
+    # Mostrar gráfico
+    plt.show()
+
+    # --- Gráfico adicional: Métricas por persona ---
+    fig2, axes2 = plt.subplots(1, 2, figsize=(14, 5))
+
+    # Calcular precision y recall por persona
+    from sklearn.metrics import precision_recall_fscore_support
+    precision, recall, f1, support = precision_recall_fscore_support(
+        etiquetas_reales, predicciones, labels=todas_etiquetas, zero_division=0
+    )
+
+    # Gráfico de barras - Precision y Recall
+    x = np.arange(len(todas_etiquetas))
+    width = 0.35
+
+    bars1 = axes2[0].bar(x - width/2, precision, width, label='Precisión', color='steelblue')
+    bars2 = axes2[0].bar(x + width/2, recall, width, label='Recall', color='coral')
+
+    axes2[0].set_xlabel('Persona', fontsize=12)
+    axes2[0].set_ylabel('Score', fontsize=12)
+    axes2[0].set_title('Precisión y Recall por Persona', fontsize=14, fontweight='bold')
+    axes2[0].set_xticks(x)
+    axes2[0].set_xticklabels([label[:15] for label in todas_etiquetas], rotation=45, ha='right')
+    axes2[0].legend()
+    axes2[0].set_ylim(0, 1.1)
+    axes2[0].axhline(y=0.7, color='red', linestyle='--', alpha=0.5, label='Umbral 70%')
+
+    # Agregar valores encima de las barras
+    for bar in bars1:
+        height = bar.get_height()
+        axes2[0].annotate(f'{height:.2f}',
+                          xy=(bar.get_x() + bar.get_width() / 2, height),
+                          xytext=(0, 3), textcoords="offset points",
+                          ha='center', va='bottom', fontsize=8)
+
+    for bar in bars2:
+        height = bar.get_height()
+        axes2[0].annotate(f'{height:.2f}',
+                          xy=(bar.get_x() + bar.get_width() / 2, height),
+                          xytext=(0, 3), textcoords="offset points",
+                          ha='center', va='bottom', fontsize=8)
+
+    # Gráfico de F1-Score
+    colors = ['green' if f >= 0.7 else 'orange' if f >= 0.5 else 'red' for f in f1]
+    bars3 = axes2[1].bar(todas_etiquetas, f1, color=colors)
+    axes2[1].set_xlabel('Persona', fontsize=12)
+    axes2[1].set_ylabel('F1-Score', fontsize=12)
+    axes2[1].set_title('F1-Score por Persona', fontsize=14, fontweight='bold')
+    axes2[1].tick_params(axis='x', rotation=45)
+    axes2[1].set_ylim(0, 1.1)
+    axes2[1].axhline(y=0.7, color='red', linestyle='--', alpha=0.5)
+
+    # Agregar valores
+    for bar, val in zip(bars3, f1):
+        axes2[1].annotate(f'{val:.2f}',
+                          xy=(bar.get_x() + bar.get_width() / 2, val),
+                          xytext=(0, 3), textcoords="offset points",
+                          ha='center', va='bottom', fontsize=9)
+
+    plt.tight_layout()
+
+    # Guardar segunda imagen
+    img_path2 = os.path.join(DATA_DIR, "metricas_por_persona.png")
+    plt.savefig(img_path2, dpi=150, bbox_inches='tight', facecolor='white')
+    print(f"📈 Métricas guardadas en: {img_path2}")
+
+    plt.show()
+
+    return cm, accuracy
+
+# ============================================================================
 # MAIN
 # ============================================================================
 
@@ -440,6 +680,9 @@ def main():
 
         if not (low_quality or low_consistency or few_images):
             print(f"   ✨ ¡Excelente! Todas las personas tienen buena calidad")
+
+        # Evaluar modelo con matriz de confusión
+        evaluar_modelo(base_embeddings, PERSONAS_BASE, extractor, threshold=0.70)
 
         print("\n" + "="*70)
         print("✅ PROCESO COMPLETADO")

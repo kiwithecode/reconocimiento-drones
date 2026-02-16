@@ -51,7 +51,7 @@ SCALE_PERCENT = 60
 MIN_CONFIDENCE = 0.4
 
 # Parámetros de Re-identificación
-IDENTIFICATION_THRESHOLD = 0.55
+IDENTIFICATION_THRESHOLD = 0.70
 REID_UPDATE_INTERVAL = 5
 
 # Parámetros de Tracking
@@ -73,7 +73,7 @@ CONFIDENCE_BAR_WIDTH = 100
 # ============================================================================
 
 # Sistema de conteo
-ENABLE_COUNTING = True  # Activar sistema de conteo
+ENABLE_COUNTING = False  # Activar sistema de conteo
 COUNT_UNIQUE_ONLY = True  # Contar solo personas únicas (no repetir)
 
 # Historial y estadísticas
